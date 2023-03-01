@@ -1,0 +1,23 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/home">profile</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" [routerLink]="['students']">List View</a>
+        <a class="nav-item nav-link" ><app-edit>add</app-edit></a>
+        <!-- <a routerLink="/student/student-add">Add</a>
+        <a routerLink="student/students">View All</a> -->
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <alert></alert>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

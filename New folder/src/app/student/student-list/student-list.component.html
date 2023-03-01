@@ -1,0 +1,27 @@
+<ul *ngIf="studentList.length>0">
+  <li *ngFor="let dataSource of studentList;let i = index">
+    <!-- <a [routerLink]="['/student',dataSource.id]"> -->
+      <table>
+        <tr>
+          <th>NO</th>
+          <th>NAME</th>
+          <TH>ID</TH>
+          <TH>AGE</TH>
+          <TH>Gender</TH>
+          <TH>DIPARTMENT</TH>
+        </tr>
+        <tr>
+          <td><p class="w-50"> {{i+1}}</p></td>
+          <!-- <td>{{dataSource.id}}</td> -->
+          <td><p class="w-50"> {{dataSource.name}}</p></td>
+            <td><p class="w-50 "> {{dataSource.regno}}</p></td>
+            <td><p class="w-50 "> {{dataSource.age}}</p></td>
+            <td><p class="w-50"> {{dataSource.gender}}</p></td>
+            <td><p class="w-50 "> {{dataSource.dipart}}</p></td>
+            <td><p><a (click)="deleteUser(dataSource.id)" class="text-danger">Delete</a></p></td>
+        </tr>
+      </table>    
+    <!-- </a> -->
+  </li>
+</ul>
+<h3 *ngIf="studentList.length==0" class="text-center">Students Not Found</h3>

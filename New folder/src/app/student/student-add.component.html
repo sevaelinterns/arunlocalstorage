@@ -1,0 +1,57 @@
+<div style="font-size: 20px;color: black;font-weight: bold;">
+  <form [formGroup]="studentForm">
+  <div class="form-group">
+      <input 
+          type="text" 
+          class="form-control w-100" 
+          formControlName="name" 
+          name="name" 
+          placeholder="Name">
+  </div>
+  <div class="form-group">
+      <input 
+          type="number" 
+          class="form-control w-100" 
+          formControlName="regno" 
+          name="regno" 
+          placeholder="Student ID"
+          [readOnly]="isEdit">
+  </div>
+  <div class="form-group">
+      <input 
+          type="number" 
+          class="form-control w-100" 
+          formControlName="age" 
+          name="age" 
+          placeholder="age">
+  </div>
+    <div class="form-group ">
+        <label for="gender">Gender:</label>
+        <input type="radio" value="male" name="gender" id="gender" formControlName="gender">
+        <label for="male">Male</label>
+        <input type="radio" value="female" name="gender" id="gender" formControlName="gender">
+        <label for="female">Female</label>
+        <input type="radio" value="other" name="gender" id="gender" formControlName="gender">
+        <label for="female">other</label>
+  </div>            
+  <div class="form-group">
+  <label for="dipart">Choose a DIPARTMENT:</label>
+<select for="dipart" name="dipart" class="form-group" formControlName="dipart">
+  <option >--select--</option>
+  <option for="B.sc" name="dipart" id="dipart" value="B.sc" >B.SC</option>
+  <option for="BCA"  name="dipart" id="dipart" value="BCA" >BCA</option>
+  <option for="BBA"  name="dipart" id="dipart" value="BBA">BBA</option>
+</select></div>
+  <!-- <div class="form-group mt-2">
+    <label for="dipart">DIPARTMENT</label>&nbsp;&nbsp;&nbsp;
+    <input type="radio" value="B.sc" name="dipart" id="dipart" formControlName="dipart">
+    <label for="B.sc">B.sc</label>&nbsp;&nbsp;
+    <input type="radio" value="BCA" name="dipart" id="dipart" formControlName="dipart">
+    <label for="BCA">BCA</label>&nbsp;&nbsp;
+    <input type="radio" value="BBA" name="dipart" id="dipart" formControlName="dipart">
+    <label for="BBA">BBA</label>&nbsp;&nbsp;
+</div> -->
+</form>
+<button (click)="add()" *ngIf="!isEdit">Add</button>
+<button (click)="edit()" *ngIf="isEdit">Edit</button>
+<button (click)="resetForm()" *ngIf="!isEdit">Reset</button></div>
