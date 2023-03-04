@@ -71,7 +71,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 rggno:user.regno,
                 dipart:user.dipart,
                 gender:user.gender,
-                token1: 'fake-jwt-token1'
+                token: 'fake-jwt-token'
             })
         }
 
@@ -97,7 +97,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             user1.id = users1.length ? Math.max(...users1.map(x => x.id)) + 1 : 1;
             users1.push(user1);
-            localStorage.setItem('dataSource', JSON.parse(users1));
+            localStorage.setItem('dataSource', JSON.stringify(users1));
 
             return ok();
         }
@@ -110,8 +110,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!isLoggedIn()) return unauthorized();
             return ok(users1);
         }
-
-
         function deleteUser() {
             if (!isLoggedIn()) return unauthorized();
 
@@ -120,9 +118,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
         function deletestudent() {
-            if (!isLoggedIn()) 
+            if (!isLoggedIn()) return unauthorized();
             users1 = users1.filter(x => x.id !== idFromUrl());
-            localStorage.setItem('dataSource', JSON.parse(users1));
+            localStorage.setItem('dataSource', JSON.stringify(users1));
             return ok();
         }
 

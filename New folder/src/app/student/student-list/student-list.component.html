@@ -1,8 +1,9 @@
+<div style="border: 1px solid black;">
 <ul *ngIf="studentList.length>0">
   <li *ngFor="let dataSource of studentList;let i = index">
     <!-- <a [routerLink]="['/student',dataSource.id]"> -->
-      <table>
-        <tr>
+      <table style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
           <th>NO</th>
           <th>NAME</th>
           <TH>ID</TH>
@@ -10,8 +11,8 @@
           <TH>Gender</TH>
           <TH>DIPARTMENT</TH>
         </tr>
-        <tr>
-          <td><p class="w-50"> {{i+1}}</p></td>
+        <tr style="border: 1px solid black;">
+          <td ><p class="w-50"> {{i+1}}</p></td>
           <!-- <td>{{dataSource.id}}</td> -->
           <td><p class="w-50"> {{dataSource.name}}</p></td>
             <td><p class="w-50 "> {{dataSource.regno}}</p></td>
@@ -24,4 +25,4 @@
     <!-- </a> -->
   </li>
 </ul>
-<h3 *ngIf="studentList.length==0" class="text-center">Students Not Found</h3>
+<h3 *ngIf="studentList.length==0" class="text-center">Students Not Found</h3></div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { User1 } from 'src/app/_models';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from 'src/app/_services';
@@ -11,7 +11,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './student-list.component.html',
   styles: [ `a{text-decoration:none;color: black;display:block;padding:15px;}ul{padding:0;}li{list-style:none;}.w-50{display:inline-block;width:45%;cursor:pointer}li:hover{background:#eee}.text-right{text-align: right;}.text-center{text-align: center;}` ]
 })
-export class StudentListComponent implements OnInit  {
+export class StudentListComponent implements OnInit, OnDestroy  {
 
   studentForm: FormGroup;
   service:User1;
@@ -28,8 +28,12 @@ export class StudentListComponent implements OnInit  {
       // let data = JSON.parse(localStorage.getItem('dataSource'));
       // this.studentList = data
       // console.log("dataset",this .studentList)
-
 }
+ngOnDestroy() {
+  // unsubscribe to ensure no memory leaks
+  this.currentUserSubscription.unsubscribe();
+}
+
 getdata(){
   this.studentService.getStudents().pipe(first()).subscribe(
     data => {
@@ -38,8 +42,11 @@ getdata(){
 }
 deleteUser(id: number) {
   this.studentService.deletestudent(id).pipe(first()).subscribe(data => {
+    this.getdata();
     console.log(data)
   })
   this.getdata();
+  console.log(this.deleteUser)
 }
+
 }

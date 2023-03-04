@@ -20,7 +20,7 @@ export class AppComponent {
         this.router.navigate(['/login']);
     }
     dashboard(){
-        this.router.navigate(['/student']);
+        this.router.navigate(['/students']);
     }
    
 }

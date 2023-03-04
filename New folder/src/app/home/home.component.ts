@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.userService.delete(id).pipe(first()).subscribe(() => {
             this.loadAllUsers()
         });
+        console.log(this.deleteUser)
     }
 
     private loadAllUsers() {

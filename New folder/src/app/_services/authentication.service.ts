@@ -13,7 +13,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
-        this.currentUserSubject1 = new BehaviorSubject<User1>(JSON.parse(localStorage.getItem('/dataSource/register')));
+        this.currentUserSubject1 = new BehaviorSubject<User1>(JSON.parse(localStorage.getItem('currentUser1')));
         this.currentUser1 = this.currentUserSubject1.asObservable();
     }
 
@@ -25,20 +25,20 @@ export class AuthenticationService {
     }
 
     add(name: string,age: number,regno:number,dipart: string,gender: string, ) {
-        return this.http.post<any>(`/dataSource/register`, { name,age,regno,dipart,gender })
+        return this.http.post<any>(`/dataSource/authenticate`, { name,age,regno,dipart,gender })
             .pipe(map(user1 => {
                 // login successful if there's a jwt token in the response
-                if (user1 && user1.token1) {
+                if (user1 && user1.token) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('/dataSource/register', JSON.stringify(user1));
-                    this.currentUserSubject.next(user1);
+                    localStorage.setItem('currentUser1', JSON.stringify(user1));
+                    this.currentUserSubject1.next(user1);
                 }
 
                 return user1;
             }));
     }
-    deleteUser(){
-        localStorage.removeItem('/dataSource/register');
+    deletestudent(){
+        localStorage.removeItem('currentUser1');
         this.currentUserSubject1.next(null);
     }
     login(username: string, password: string) {

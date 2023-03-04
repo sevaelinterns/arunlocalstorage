@@ -14,11 +14,10 @@ registerstudent(user: User1) {
     return this.http.post(`/dataSource/register`, user,);
 }
 editstudent(id:any){
-  return this.http.get(`/dataSource`,id)
+  return this.http.get(`/dataSource`,id);
 }
-
 deletestudent(id: number) {
-    return this.http.delete(`/dataSource/${id}`);
+  return this.http.delete(`/dataSource/${id}`);
 }
 }
 
