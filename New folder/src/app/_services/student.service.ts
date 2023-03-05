@@ -1,4 +1,4 @@
-import { HttpClient,  } from '@angular/common/http';
+import { HttpClient, HttpHeaders,  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User1 } from '../_models';
 
@@ -16,7 +16,7 @@ registerstudent(user: User1) {
 editstudent(id:any){
   return this.http.get(`/dataSource`,id);
 }
-deletestudent(id: number) {
+deletestudent(id: any) {
   return this.http.delete(`/dataSource/${id}`);
 }
 }

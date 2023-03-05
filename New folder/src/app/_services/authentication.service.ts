@@ -24,7 +24,7 @@ export class AuthenticationService {
         return this.currentUserSubject1.value;
     }
 
-    add(name: string,age: number,regno:number,dipart: string,gender: string, ) {
+    getStudents(name: string,age: number,regno:number,dipart: string,gender: string ) {
         return this.http.post<any>(`/dataSource/authenticate`, { name,age,regno,dipart,gender })
             .pipe(map(user1 => {
                 // login successful if there's a jwt token in the response

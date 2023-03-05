@@ -11,38 +11,31 @@
         </button>
       </div>
       <div class="modal-body"  >
-
-
-
-<table>
-  <tr>
-    <th>name</th>
-    <th>regno</th>
-    <th>age</th>
-    <th>gender</th>
-    <th>dip</th>
-  </tr>
+<table style="width: 750px;">
 <div class="form-group" style="color: black; ">
+  
   <form [formGroup]="studentForm">
+      <ng-container formArrayName="datasorce" >
+        <div class="col-6" *ngFor="let datasorce of contactFormGroup; let i = index;"> 
+        <ng-container [formGroupName]="i">
     <tr>
-    <td><input type="text" class="form-control " formControlName="name" name="name" placeholder="Name"></td>
-    <td><input type="number" class="form-control " formControlName="regno" name="regno" placeholder="Student ID"[readOnly]="isEdit"></td>
-    <td><input type="number" class="form-control " formControlName="age" name="age"  placeholder="age"></td>
-    <td>
+    <td><p><input type="text" style="width:100px" class="form-control " formControlName="name" name="name" placeholder="Name"></p></td>
+    <td><p><input type="number"style="width:100px" class="form-control " formControlName="regno" name="regno" placeholder="Student ID"[readOnly]="isEdit"></p></td>
+    <td><p><input type="number"style="width:100px" class="form-control " formControlName="age" name="age"  placeholder="age"></p></td>
+    <td><p style="display: flex;">
         <input type="radio" value="male" name="gender" id="gender" formControlName="gender">
         <label for="male">Male</label>
         <input type="radio" value="female" name="gender" id="gender" formControlName="gender">
         <label for="female">Female</label>
         <input type="radio" value="other" name="gender" id="gender" formControlName="gender">
-        <label for="female">other</label></td>
-        <td>
-  <label for="dipart">Choose a DIPARTMENT:</label>
+        <label for="female">other</label></p></td>
+        <td><p>
 <select for="dipart" name="dipart"  formControlName="dipart">
   <option  disabled>--select--</option>
   <option for="B.sc" name="dipart" id="dipart" value="B.sc" >B.SC</option>
   <option for="BCA"  name="dipart" id="dipart" value="BCA" >BCA</option>
   <option for="BBA"  name="dipart" id="dipart" value="BBA">BBA</option>
-</select></td></tr>
+</select></p></td></tr>
   <!-- <div class="form-group mt-2">
     <label for="dipart">DIPARTMENT</label>&nbsp;&nbsp;&nbsp;
     <input type="radio" value="B.sc" name="dipart" id="dipart" formControlName="dipart">
@@ -52,13 +45,13 @@
     <input type="radio" value="BBA" name="dipart" id="dipart" formControlName="dipart">
     <label for="BBA">BBA</label>&nbsp;&nbsp;
 </div> -->
+</ng-container>
+</div>
+</ng-container>
 </form></div></table>
-<button (click)="edit()" *ngIf="isEdit">Edit</button>
-
-
-
 </div>
 <div class="modal-footer" >
+  <button (click)="addrow()" >Edit</button>
   <button type="button" class="btn btn-secondary" (click)="add()" *ngIf="!isEdit" data-dismiss="modal">ADD</button>
   <button type="button" class="btn btn-secondary" (click)="resetForm()" *ngIf="!isEdit">Reset</button>
   <!-- <button type="button" class="btn btn-primary">Save changes</button> -->

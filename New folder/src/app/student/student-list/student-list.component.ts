@@ -40,13 +40,21 @@ getdata(){
       this.studentList = data})
       console.log(this.getdata())
 }
-deleteUser(id: number) {
-  this.studentService.deletestudent(id).pipe(first()).subscribe(data => {
-    this.getdata();
+deleteUser(data: any) {
+
+  // const id = "dataSorce" + data;
+  // this.studentService.deletestudent(id).pipe(first()).subscribe(data => {
+  //   console.log(data)
+  // })
+  // this.getdata()
+
+
+
+  this.studentService.deletestudent(data).pipe(first()).subscribe(data => {
     console.log(data)
   })
   this.getdata();
-  console.log(this.deleteUser)
+  // console.log(this.deleteUser)
 }
 
 }

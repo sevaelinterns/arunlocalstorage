@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
 import { StudentService } from '../_services/student.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -17,27 +17,45 @@ export class StudentAddComponent implements OnInit  {
   msg:String = '';
   loading: boolean;
   dipary:string="";
+  fa:FormArray
+ 
   constructor(
     private studentService: StudentService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private fb:FormBuilder
   ){}
   
   ngOnInit(){
-    this.studentForm = new FormGroup({
-      name: new FormControl('',[ Validators.required]),
-      age: new FormControl('',[ Validators.required]),
-      regno: new FormControl('',[ Validators.required]),
-      dipart: new FormControl('',[ Validators.required]),
-      gender: new FormControl('',[ Validators.required]),
-    })
+    
+    this.studentForm=this.fb.group({
+      datasorce:this.fb.array([this.datas()])
+    }) ; 
+    this.fa=this.studentForm.get('datasorce') as FormArray;
+     this.datas()
   }
+ 
+datas():FormGroup{
+return this.fb.group ({
+    name: new FormControl('',[ Validators.required]),
+    age: new FormControl('',[ Validators.required]),
+    regno: new FormControl('',[ Validators.required]),
+    dipart: new FormControl('',[ Validators.required]),
+    gender: new FormControl('',[ Validators.required]),
+  })
+}
+addrow(){
+  this.fa.push(this.datas());
+}
 
   resetForm(){
     console.log('reset',this.studentForm)
     this.studentForm.reset();
   }
 
+ get contactFormGroup():AbstractControl[] {
+    return (<FormArray> this.studentForm.get('datasorce')).controls
+ } 
   
   add(){
     this.loading = true;
